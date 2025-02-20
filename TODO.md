@@ -1,0 +1,1 @@
+- [] Create collections (go through the video guide of uploading dummy CSV data)
