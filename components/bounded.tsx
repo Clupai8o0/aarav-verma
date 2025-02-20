@@ -19,7 +19,7 @@ function Bounded({
 	return (
 		<section
 			className={clsx(
-				"relative w-full flex justify-center overflow-hidden",
+				"relative w-full flex justify-center",
 				parentClassname
 			)}
 			id={id}
