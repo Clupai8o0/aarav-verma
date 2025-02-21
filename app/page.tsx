@@ -43,20 +43,25 @@ export default async function Home() {
 				<h1 className="text-center text-7xl mb-8">Products</h1>
 				<div className="grid grid-cols-4 gap-x-6 gap-y-10">
 					{products.slice(0, 4).map((product) => (
-					// {products.map((product) => (
-						<div key={generateKey()}>
-							<img
-								src={product.images[0].url}
-								alt={product.images[0].altText}
-								className="w-full object-cover h-96"
-							/>
-							<div className="flex justify-between items-center mt-4 text-lg">
-								<h2 className="font-sans">{product.title}</h2>
-								<p className="font-sans">
-									$A{product.priceRange.minVariantPrice.amount.toString().slice(0, -2)}
-								</p>
+						// {products.map((product) => (
+						<Link href={`/product/${product.handle}`} key={generateKey()}>
+							<div>
+								<img
+									src={product.images[0].url}
+									alt={product.images[0].altText}
+									className="w-full object-cover h-96"
+								/>
+								<div className="flex justify-between items-center mt-4 text-lg">
+									<h2 className="font-sans">{product.title}</h2>
+									<p className="font-sans">
+										$A
+										{product.priceRange.minVariantPrice.amount
+											.toString()
+											.slice(0, -2)}
+									</p>
+								</div>
 							</div>
-						</div>
+						</Link>
 					))}
 				</div>
 			</Bounded>
