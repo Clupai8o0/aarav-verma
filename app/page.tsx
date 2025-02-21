@@ -3,31 +3,11 @@ import { ShoppingBag } from "lucide-react";
 
 import Bounded from "@/components/bounded";
 import { generateKey } from "@/lib/utils";
+import { getProducts } from "@/lib/shopify";
 
-const dummyData = [
-	{
-		title: "Product 1",
-		src: "/img.jpg",
-		price: 100,
-	},
-	{
-		title: "Product 2",
-		src: "/img.jpg",
-		price: 100,
-	},
-	{
-		title: "Product 3",
-		src: "/img.jpg",
-		price: 100,
-	},
-	{
-		title: "Product 4",
-		src: "/img.jpg",
-		price: 100,
-	},
-];
+export default async function Home() {
+	const products = await getProducts({});
 
-export default function Home() {
 	return (
 		<main className="px-4 md:px-10 lg:px-0">
 			<Bounded
@@ -61,13 +41,20 @@ export default function Home() {
 
 			<Bounded id="products" className="mt-10">
 				<h1 className="text-center text-7xl mb-8">Products</h1>
-				<div className="flex gap-4">
-					{dummyData.map((product) => (
+				<div className="grid grid-cols-4 gap-x-6 gap-y-10">
+					{products.slice(0, 4).map((product) => (
+					// {products.map((product) => (
 						<div key={generateKey()}>
-							<img src={product.src} alt={product.title} />
+							<img
+								src={product.images[0].url}
+								alt={product.images[0].altText}
+								className="w-full object-cover h-96"
+							/>
 							<div className="flex justify-between items-center mt-4 text-lg">
-								<h2>{product.title}</h2>
-								<p>{product.price}</p>
+								<h2 className="font-sans">{product.title}</h2>
+								<p className="font-sans">
+									$A{product.priceRange.minVariantPrice.amount.toString().slice(0, -2)}
+								</p>
 							</div>
 						</div>
 					))}

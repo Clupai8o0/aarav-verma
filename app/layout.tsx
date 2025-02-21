@@ -7,6 +7,11 @@ const serif = EB_Garamond({
 	subsets: ["latin"],
 });
 
+const sans = IBM_Plex_Sans({
+	weight: ["400", "700"],
+	variable: "--font-sans",
+})
+
 export const metadata: Metadata = {
 	title: "Aarav Verma",
 	description:
@@ -18,7 +23,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en">
-			<body className={`${serif.variable} antialiased`}>{children}</body>
+			<body className={`${serif.variable} ${sans.variable} antialiased`}>{children}</body>
 		</html>
 	);
 }

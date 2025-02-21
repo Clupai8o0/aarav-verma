@@ -11,6 +11,7 @@ export default {
 		extend: {
 			fontFamily: {
 				serif: "var(--font-serif)",
+				sans: "var(--font-sans)",
 			},
 			colors: {
 				background: "hsl(var(--background))",
