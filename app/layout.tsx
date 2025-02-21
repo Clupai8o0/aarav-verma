@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { EB_Garamond } from "next/font/google";
+import { EB_Garamond, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
 const serif = EB_Garamond({
