@@ -53,7 +53,7 @@ export default function Home() {
 					</div>
 				</header>
 
-				<div className="flex w-full items-end justify-center">
+				<div className="flex w-full items-end justify-center gap-4">
 					<img src="/lorem.png" alt="Lorem handwritten" className="w-1/2" />
 					<img src="/ipsum.png" alt="Ipsum handwritten" className="w-1/2" />
 				</div>
