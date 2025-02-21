@@ -3,7 +3,7 @@ import {
 	SHOPIFY_GRAPHQL_API_ENDPOINT,
 	TAGS,
 } from "./constants";
-import { getProductsQuery } from "./queries";
+import { getProductQuery, getProductsQuery } from "./queries";
 import { isShopifyError } from "./type-guards";
 import {
 	Connection,
@@ -11,6 +11,7 @@ import {
 	Product,
 	ShopifyCollectionProductsOperation,
 	ShopifyProduct,
+	ShopifyProductOperation,
 } from "./types";
 import { ensureStartWith } from "./utils";
 
@@ -151,4 +152,15 @@ export async function getProducts({
 
 	//@ts-ignore
 	return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+}
+
+export async function getProduct(handle: string): Promise<Product | undefined> {
+	const res = await shopifyFetch<ShopifyProductOperation>({
+		query: getProductQuery,
+		tags: [TAGS.products],
+		variables: {
+			handle,
+		},
+	});
+	return reshapeProduct(res.body.data.product, false);
 }

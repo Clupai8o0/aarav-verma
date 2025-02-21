@@ -41,7 +41,7 @@ export default async function Home() {
 
 			<Bounded id="products" className="mt-10">
 				<h1 className="text-center text-7xl mb-8">Products</h1>
-				<div className="grid grid-cols-4 gap-x-6 gap-y-10">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
 					{products.slice(0, 4).map((product) => (
 						// {products.map((product) => (
 						<Link href={`/product/${product.handle}`} key={generateKey()}>
