@@ -142,11 +142,13 @@ export async function getProducts({
 		query: getProductsQuery,
 		tags: [TAGS.products],
 		variables: {
+			//@ts-ignore
 			query,
 			reverse,
 			sortKey,
 		},
 	});
 
+	//@ts-ignore
 	return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
 }
