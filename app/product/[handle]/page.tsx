@@ -8,7 +8,8 @@ import React from "react";
 //todo: generate metadata
 
 async function Product({ params }: { params: { handle: string } }) {
-	const product = await getProduct(await params.handle);
+	const { handle } = await params;
+	const product = await getProduct(handle);
 	if (!product) return notFound();
 
 	return (
@@ -30,9 +31,7 @@ async function Product({ params }: { params: { handle: string } }) {
 			</Bounded>
 
 			<Bounded>
-				<div>
-          
-        </div>
+				<div></div>
 				<div></div>
 			</Bounded>
 		</main>
