@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { EB_Garamond, IBM_Plex_Sans } from "next/font/google";
+import { EB_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar";
+import { CartProvider } from "@/components/cart-context";
+import { cookies } from "next/headers";
+import { getCart } from "@/lib/shopify";
 
 const serif = EB_Garamond({
 	variable: "--font-serif",
 	subsets: ["latin"],
 });
 
-const sans = IBM_Plex_Sans({
+const sans = Montserrat({
 	weight: ["400", "700"],
 	variable: "--font-sans",
 	subsets: ["latin"],
@@ -16,16 +20,22 @@ const sans = IBM_Plex_Sans({
 export const metadata: Metadata = {
 	title: "Aarav Verma",
 	description:
-		"To become truly immortal a work of art must escape all human limits: logic and common sense will only interfere. But once these barriers are broken it will enter the regions of childhood vision and dream. The symbols or the figures represent a part of the sophistication and spontaneity of my mind. The work creates a harmony of both aesthetic and complexity of lines to bring out a face that is eerie yet familiar in our daily lives, depicting the reality of the human society",
+		"Welcome to Aarav Verma, where art, fashion, and storytelling converge. Our debut collection, LOREM IPSUM, features uniquely designed tote bags, wall art, and t-shirts that celebrate the essence of human expression. Each piece is meticulously handcrafted, blending contemporary aesthetics with deep philosophical undertones.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
+	const cartId = (await cookies()).get("cartId")?.value;
+	const cartPromise = getCart(cartId);
+
 	return (
 		<html lang="en">
 			<body className={`${serif.variable} ${sans.variable} antialiased`}>
-				{children}
+				<CartProvider cartPromise={cartPromise}>
+					<Navbar />
+					{children}
+				</CartProvider>
 			</body>
 		</html>
 	);

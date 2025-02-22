@@ -1,4 +1,4 @@
-import { productFragment } from "./fragments";
+import { cartFragment, productFragment } from "./fragments";
 
 export const getProductQuery = /* GraphQL */ `
 	query getProduct($handle: String!) {
@@ -24,4 +24,13 @@ export const getProductsQuery = /* GraphQL */ `
 		}
 	}
 	${productFragment}
+`;
+
+export const getCartQuery = /* GraphQL */ `
+	query getCart($cartId: ID!) {
+		cart(id: $cartId) {
+			...cart
+		}
+	}
+	${cartFragment}
 `;
