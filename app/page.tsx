@@ -10,7 +10,7 @@ export default async function Home() {
 	const products = await getProducts({});
 
 	return (
-		<main className="px-4 md:px-10 lg:px-0">
+	<main className="px mb-12">
 			<Bounded
 				outerChildren={
 					<img

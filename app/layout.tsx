@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import { CartProvider } from "@/components/cart-context";
 import { cookies } from "next/headers";
 import { getCart } from "@/lib/shopify";
+import Footer from "@/components/footer";
 
 const serif = EB_Garamond({
 	variable: "--font-serif",
@@ -35,6 +36,7 @@ export default async function RootLayout({
 				<CartProvider cartPromise={cartPromise}>
 					<Navbar />
 					{children}
+					<Footer />
 				</CartProvider>
 			</body>
 		</html>

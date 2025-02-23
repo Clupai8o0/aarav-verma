@@ -68,7 +68,7 @@ const CartModal = () => {
 				</div>
 			</SheetTrigger>
 
-			<SheetContent className="w-[700px]">
+			<SheetContent>
 				<SheetHeader>
 					<SheetTitle className="font-sans font-light">Cart</SheetTitle>
 				</SheetHeader>
