@@ -47,7 +47,7 @@ export async function Navbar() {
 						<Search />
 					</div> */}
 					{/* <div className="flex justify-end md:w-1/3"> */}
-					<CartModal />
+					{/* <CartModal /> */}
 					{/* </div> */}
 				</div>
 			</nav>
