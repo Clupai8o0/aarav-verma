@@ -55,7 +55,7 @@ export default function CartModal() {
 	}, [isOpen, cart?.totalQuantity, quantityRef]);
 
 	return (
-		<Sheet open={true} onOpenChange={setIsOpen}>
+		<Sheet open={isOpen} onOpenChange={setIsOpen}>
 			<SheetTrigger asChild>
 				<button aria-label="Open cart" onClick={openCart}>
 					<OpenCart quantity={cart?.totalQuantity} />
