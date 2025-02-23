@@ -22,7 +22,7 @@ button {
 
 @layer base {
 	* {
-		@apply font-serif;
+		@apply font-sans;
 	}
 
 	:root {
