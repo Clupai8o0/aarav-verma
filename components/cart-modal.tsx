@@ -18,6 +18,7 @@ import Price from "./price";
 import { EditItemQuantityButton } from "./edit-cart-item";
 import { DeleteItemButton } from "./delete-cart-item";
 import { useFormStatus } from "react-dom";
+
 import { Loader2 } from "lucide-react";
 
 type MerchandiseSearchParams = {
@@ -75,7 +76,7 @@ const CartModal = () => {
 
 				{!cart || cart.lines.length === 0 ? (
 					<div className="flex flex-col gap-4 h-dvh justify-center items-center">
-						<p className="font-sans text-2xl">Your cart is empty</p>
+						<p className="font-sans text-2xl text-muted-foreground">Your cart is empty</p>
 					</div>
 				) : (
 					<div className="flex h-full flex-col justify-between overflow-hidden p-1">
