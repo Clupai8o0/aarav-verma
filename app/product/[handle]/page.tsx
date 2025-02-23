@@ -1,4 +1,6 @@
+import { AddToCart } from "@/components/add-to-cart";
 import Bounded from "@/components/bounded";
+import { ProductProvider } from "@/components/product-context";
 import Gallery from "@/gallery";
 import { getProduct } from "@/lib/shopify";
 import { ShoppingBag } from "lucide-react";
@@ -14,31 +16,34 @@ async function Product({ params }: { params: Promise<{ handle: string }> }) {
 	if (!product) return notFound();
 
 	return (
-		<main className="px-4 md:px-10 lg:px-0">
-			<Bounded>
-				<div className="flex flex-row items-center">
-					<div className="w-full lg:w-1/2 flex justify-center mt-12">
-						<Gallery images={product.images} />
+		<ProductProvider>
+			<main className="px-4 md:px-10 lg:px-0">
+				<Bounded>
+					<div className="flex flex-row items-center">
+						<div className="w-full lg:w-1/2 flex justify-center mt-12">
+							<Gallery images={product.images} />
+						</div>
+						<div className="w-full lg:w-1/2">
+							<h1>{product.title}</h1>
+							<p>
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+								aliquid sint qui tenetur cum aperiam veniam, ad magni! Repellat
+								aspernatur dolore non animi voluptatibus voluptas illo modi
+								soluta ipsa odio.
+							</p>
+							<p>
+								Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+								Delectus, quas molestias accusantium nulla iste praesentium
+								facere commodi. Dignissimos, provident explicabo doloremque
+								aperiam, nobis consectetur corporis officia, dicta facere vel
+								vero!
+							</p>
+							<AddToCart product={product} />
+						</div>
 					</div>
-					<div className="w-full lg:w-1/2">
-						<h1>{product.title}</h1>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-							aliquid sint qui tenetur cum aperiam veniam, ad magni! Repellat
-							aspernatur dolore non animi voluptatibus voluptas illo modi soluta
-							ipsa odio.
-						</p>
-						<p>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-							Delectus, quas molestias accusantium nulla iste praesentium facere
-							commodi. Dignissimos, provident explicabo doloremque aperiam,
-							nobis consectetur corporis officia, dicta facere vel vero!
-						</p>
-						<button>Add to cart</button>
-					</div>
-				</div>
-			</Bounded>
-		</main>
+				</Bounded>
+			</main>
+		</ProductProvider>
 	);
 }
 

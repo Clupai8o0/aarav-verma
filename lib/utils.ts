@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import { ReadonlyURLSearchParams } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { v4 } from "uuid";
 
@@ -13,3 +14,13 @@ export function ensureStartWith(stringToCheck: string, startsWith: string) {
 }
 
 export const generateKey = () => v4();
+
+export function createUrl(
+	pathname: string,
+	params: URLSearchParams | ReadonlyURLSearchParams
+) {
+	const paramsString = params.toString();
+	const queryString = `${paramsString.length ? "?" : ""}${paramsString}`;
+
+	return `${pathname}${queryString}`;
+}

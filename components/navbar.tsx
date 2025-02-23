@@ -4,7 +4,7 @@ import Bounded from "./bounded";
 
 const Navbar = () => {
 	return (
-		<Bounded>
+		<Bounded className="px-4 md:px-10 lg:px-0">
 			<header className="flex justify-between items-center py-8 w-full">
 				<Link href="/">
 					<img
