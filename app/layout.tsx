@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { Montserrat } from "next/font/google";
+import { EB_Garamond, Montserrat } from "next/font/google";
 
 import "./globals.css";
 import { getCart } from "@/lib/shopify";
@@ -12,6 +12,11 @@ import { CartProvider } from "@/components/cart/cart-context";
 const sans = Montserrat({
 	weight: ["400", "700"],
 	variable: "--font-sans",
+	subsets: ["latin"],
+});
+
+const serif = EB_Garamond({
+	variable: "--font-serif",
 	subsets: ["latin"],
 });
 
@@ -31,7 +36,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${sans.variable} antialiased`}>
+      <body className={`${sans.variable} ${serif.variable} antialiased`}>
         <CartProvider cartPromise={cart}>
           <Navbar />
           {children}

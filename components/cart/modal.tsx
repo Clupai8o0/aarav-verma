@@ -100,7 +100,7 @@ export default function CartModal() {
 									return (
 										<li
 											key={i}
-											className="flex w-full flex-col border-b border-neutral-300 dark:border-neutral-700"
+											className="flex w-full flex-col border-b border-neutral-700"
 										>
 											<div className="relative flex w-full flex-row justify-between px-1 py-4">
 												<DeleteItemButton
@@ -109,7 +109,7 @@ export default function CartModal() {
 												/>
 											</div>
 											<div className="flex flex-row">
-												<div className="relative h-16 w-16 overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
+												<div className="relative h-16 w-16 overflow-hidden rounded-md border border-neutral-700 bg-neutral-900 hover:bg-neutral-800">
 													<Image
 														className="h-full w-full object-cover"
 														width={64}
@@ -144,7 +144,7 @@ export default function CartModal() {
 													amount={item.cost.totalAmount.amount}
 													currencyCode={item.cost.totalAmount.currencyCode}
 												/>
-												<div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
+												<div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-700">
 													<EditItemQuantityButton
 														item={item}
 														type="minus"
@@ -166,23 +166,11 @@ export default function CartModal() {
 									);
 								})}
 						</ul>
-						<div className="py-4 text-sm text-neutral-500 dark:text-neutral-400">
-							<div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 dark:border-neutral-700">
-								<p>Taxes</p>
-								<Price
-									className="text-right text-base text-black dark:text-white"
-									amount={cart.cost.totalTaxAmount.amount}
-									currencyCode={cart.cost.totalTaxAmount.currencyCode}
-								/>
-							</div>
-							<div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
-								<p>Shipping</p>
-								<p className="text-right">Calculated at checkout</p>
-							</div>
-							<div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+						<div className="py-4 text-sm text-neutral-400">
+							<div className="mb-3 flex items-center justify-between border-b pb-1 pt-1 border-neutral-700">
 								<p>Total</p>
 								<Price
-									className="text-right text-base text-black dark:text-white"
+									className="text-right text-base text-white"
 									amount={cart.cost.totalAmount.amount}
 									currencyCode={cart.cost.totalAmount.currencyCode}
 								/>
@@ -192,6 +180,7 @@ export default function CartModal() {
 							action={() => {
 								redirectToCheckout();
 							}}
+							className="pb-8"
 						>
 							<CheckoutButton />
 						</form>
