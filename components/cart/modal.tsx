@@ -57,11 +57,22 @@ export default function CartModal() {
 	return (
 		<Sheet open={isOpen} onOpenChange={setIsOpen}>
 			<SheetTrigger asChild>
-				<button aria-label="Open cart" onClick={openCart}>
-					<OpenCart quantity={cart?.totalQuantity} />
-				</button>
+				<div className="relative">
+					<img
+						src="/cart.png"
+						alt="Cart"
+						className="w-6 h-6 md:w-9 md:h-9 cursor-pointer"
+					/>
+
+					{(cart?.totalQuantity && (
+						<div className="absolute right-0 top-0 -mr-2 -mt-2 h-4 w-4 rounded-full bg-white text-[11px] text-black flex items-center justify-center font-sans">
+							{cart?.totalQuantity}
+						</div>
+					)) ||
+						null}
+				</div>
 			</SheetTrigger>
-			<SheetContent>
+			<SheetContent className="w-full max-w-[500px]">
 				<SheetHeader>
 					<SheetTitle className="font-sans font-light">Cart</SheetTitle>
 				</SheetHeader>
@@ -100,7 +111,7 @@ export default function CartModal() {
 									return (
 										<li
 											key={i}
-											className="flex w-full flex-row items-center border-b py-4 border-neutral-700 gap-2"
+											className="flex w-full flex-row items-center justify-between border-b py-4 border-neutral-700 gap-2"
 										>
 											{/* <div className="relative flex w-full flex-row justify-between px-1 py-4">
 												<DeleteItemButton
