@@ -55,7 +55,7 @@ export default function CartModal() {
 	}, [isOpen, cart?.totalQuantity, quantityRef]);
 
 	return (
-		<Sheet open={isOpen} onOpenChange={setIsOpen}>
+		<Sheet open={true} onOpenChange={setIsOpen}>
 			<SheetTrigger asChild>
 				<button aria-label="Open cart" onClick={openCart}>
 					<OpenCart quantity={cart?.totalQuantity} />
@@ -100,14 +100,15 @@ export default function CartModal() {
 									return (
 										<li
 											key={i}
-											className="flex w-full flex-col border-b border-neutral-700"
+											className="flex w-full flex-row items-center border-b py-4 border-neutral-700 gap-2"
 										>
-											<div className="relative flex w-full flex-row justify-between px-1 py-4">
+											{/* <div className="relative flex w-full flex-row justify-between px-1 py-4">
 												<DeleteItemButton
 													item={item}
 													optimisticUpdate={updateCartItem}
 												/>
-											</div>
+											</div> */}
+
 											<div className="flex flex-row">
 												<div className="relative h-16 w-16 overflow-hidden rounded-md border border-neutral-700 bg-neutral-900 hover:bg-neutral-800">
 													<Image
@@ -121,13 +122,14 @@ export default function CartModal() {
 														src={item.merchandise.product.featuredImage.url}
 													/>
 												</div>
+
 												<Link
 													href={merchandiseUrl}
 													onClick={closeCart}
 													className="z-30 ml-2 flex flex-row space-x-4"
 												>
-													<div className="flex flex-1 flex-col text-base">
-														<span className="leading-tight">
+													<div className="flex flex-1 flex-col text-base justify-center items-start gap-1">
+														<span className="leading-tight truncate">
 															{item.merchandise.product.title}
 														</span>
 														{item.merchandise.title !== DEFAULT_OPTION ? (
@@ -135,16 +137,17 @@ export default function CartModal() {
 																{item.merchandise.title}
 															</p>
 														) : null}
+														<Price
+															className="flex justify-end space-y-2 text-right text-sm text-muted-foreground"
+															amount={item.cost.totalAmount.amount}
+															currencyCode={item.cost.totalAmount.currencyCode}
+														/>
 													</div>
 												</Link>
 											</div>
-											<div className="flex h-16 flex-col justify-between">
-												<Price
-													className="flex justify-end space-y-2 text-right text-sm"
-													amount={item.cost.totalAmount.amount}
-													currencyCode={item.cost.totalAmount.currencyCode}
-												/>
-												<div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-700">
+
+											<div className="flex flex-col justify-between">
+												<div className="ml-auto flex h-9 flex-row items-center">
 													<EditItemQuantityButton
 														item={item}
 														type="minus"
