@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Montserrat } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/navbar";
-import { CartProvider } from "@/components/cart-context";
 import { cookies } from "next/headers";
-import { getCart } from "@/lib/shopify";
-import Footer from "@/components/footer";
+import { Montserrat } from "next/font/google";
 
-const serif = EB_Garamond({
-	variable: "--font-serif",
-	subsets: ["latin"],
-});
+import "./globals.css";
+import { getCart } from "@/lib/shopify";
+
+import Footer from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { CartProvider } from "@/components/cart/cart-context";
 
 const sans = Montserrat({
 	weight: ["400", "700"],
@@ -25,20 +22,22 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-	children,
-}: Readonly<{ children: React.ReactNode }>) {
-	const cartId = (await cookies()).get("cartId")?.value;
-	const cartPromise = getCart(cartId);
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const cartId = (await cookies()).get("cartId")?.value;
+  const cart = getCart(cartId);
 
-	return (
-		<html lang="en">
-			<body className={`${serif.variable} ${sans.variable} antialiased`}>
-				<CartProvider cartPromise={cartPromise}>
-					<Navbar />
-					{children}
-					<Footer />
-				</CartProvider>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body className={`${sans.variable} antialiased`}>
+        <CartProvider cartPromise={cart}>
+          <Navbar />
+          {children}
+          <Footer />
+        </CartProvider>
+      </body>
+    </html>
+  );
 }

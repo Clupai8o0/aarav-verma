@@ -1,7 +1,7 @@
 "use client";
 
-import { Image } from "./lib/types";
-import { generateKey } from "./lib/utils";
+import { Image } from "@/lib/shopify/types";
+import { generateKey } from "@/lib/utils";
 
 import {
 	Carousel,
